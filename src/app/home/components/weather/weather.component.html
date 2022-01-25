@@ -1,0 +1,62 @@
+<div class="container">
+
+  <div class="row headerDiv">
+    <h4>Bienvenido {{ username }}!</h4>
+    <button class="btn btn-danger" (click)="deleteUsers()">Borrar historial</button>
+    <button class="btn btn-primary" (click)="onLogout()">Cerrar sesión</button>
+  </div>
+
+  <div class="row searchDiv">
+    <h3>Consultar el tiempo por ciudad</h3>
+    <div class="col-8 customCol">
+      <input #newCity type="text"  [placeholder]="inputErrorMessage || 'Bogotá'" class="inputField">
+    </div>
+    <div class="col-4 customCol">
+      <button (click)="addCity(newCity.value); newCity.value=''; newCity.placeholder='Bogotá' " class="btn btn-primary w-100 addButton">
+        Buscar
+      </button>
+    </div>
+  </div>
+
+  <div class="row mainDiv">
+    <mat-tab-group 
+      class="main-tab"
+      [selectedIndex]="selectedCityTab.value" 
+      (selectedIndexChange)="selectedCityTab.setValue($event); selectedDayTab.setValue(0)">
+      <mat-tab *ngFor="let data of weatherData; let index = index" [label]="data.city" class="cityTabs">
+
+        <div class="weatherCard">
+          <div class="col-6 cityName">
+            <h3>{{data.city}}</h3>
+            <p>{{data.temp}} °C</p>
+          </div>
+          <div class="col-6 cityData">
+            <p>Humedad: {{data.humidity}}%</p>
+            <p>Presión: {{data.pressure}} hPa</p>
+            <p>Viento: {{data.wind.speed}} km/h</p>
+          </div>
+        </div>
+
+        <div class="chartWrapper">
+          <div class="chartDiv">
+            <mat-tab-group [selectedIndex]="selectedDayTab.value" (selectedIndexChange)="selectedDayTab.setValue($event)" headerPosition="below">
+              <mat-tab *ngFor="let day of data.forecast | keyvalue; let index = index" [label]="day.key">
+                <app-chart [chartData]="day.value" ></app-chart>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+    
+          <div class="removeButtonDiv">
+            <button mat-raised-button
+              class="delete-tab-button"
+              [disabled]="weatherData.length === 1"
+              (click)="removeCity(data.id,index)">
+              <i class="material-icons deleteIcon" [class.disable]="weatherData.length === 1">delete_forever</i>
+            </button>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+</div>

@@ -1,0 +1,76 @@
+.logoutButton{
+  font-size: 50px;
+  color: blue;
+  cursor: pointer;
+}
+
+.headerDiv{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgb(196, 190, 190);
+}
+
+.searchDiv{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+h3{
+  font-weight: normal;
+}
+
+.inputField{
+  width: 100%;
+  height: 40px;
+  padding-left: 10px;
+}
+
+.mainDiv{
+  border: 1px rgb(201, 200, 200) solid;
+}
+
+.weatherCard{
+  margin: 20px 50px 20px 50px;
+  display: flex;
+}
+
+.cityName p{
+  font-size: 50px;
+}
+
+.chartDiv{
+  padding-top: 20px;
+  max-width: 700px;
+}
+
+.main-tab{
+  max-width: 800px;
+}
+
+.delete-tab-button{
+  height: 80px;
+  width: 80px;
+  border: none;
+  background: none;
+}
+
+.removeButtonDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.chartWrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.deleteIcon{
+  font-size: 60px;
+  color: rgb(189, 11, 11);
+}
+
+.disable{
+  color: rgb(211, 180, 180);
+}
